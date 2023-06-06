@@ -1,9 +1,8 @@
 # **TFG |AI-based classification of symptomatic subjects with Brugada Syndrome from ECG-derived Markers and clinical data**
 ## Barcelona, 06 de June de 2023.
 ### Author: Álvaro Leva Ligero. 
+#### Director/s: Elena Arbelo, Flavio Palmieri
 
-> Director/s: Elena Arbelo, Flavio Palmieri, Pedro Gomis
---------
 This repository includes all the Python scripts developed during the second phase of the project. It contains:
 * **p01:** Load of ECG-derived biomarkers and merge with clinical data.
 * **p02:** Data imputation and exploratory analysis. 
