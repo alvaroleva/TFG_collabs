@@ -3,10 +3,15 @@
 ### Author: Álvaro Leva Ligero. 
 #### Director/s: Elena Arbelo, Flavio Palmieri
 
-This repository includes all the Python scripts developed during the second phase of the project. It contains:
-* **p01:** Load of ECG-derived biomarkers and merge with clinical data.
-* **p02:** Data imputation and exploratory analysis. 
-* **Model optimization and validation:** KNN, SVM, RF and XGBoost. 
+This repository includes all the scripts developed during the project. 
+* **Phase 1 (MATLAB): Signal pre-processing and extraction of ECG-derived biomarkers**
+  * Read ISHNE signal and 3min-segmentation of the 24h-Holter recording
+  * Signal averaging
+  * Beat delineation
+  * 12-lead ECG-biomarkers computation
+* **Phase 2 (Python): Evaluation of supervised classification models in the task of differentiation of the symptomatic and asymptomatic BrS condition** 
+  * Data cleaning and homogeneization, first exploratory analysis and Data imputation.
+  * Optimization and evaluation of different classifiers: KNN, SVM, RF and XGBoost. 
 
 ---
 **ABSTRACT**
