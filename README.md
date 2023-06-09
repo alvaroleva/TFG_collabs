@@ -2,7 +2,7 @@
 # **TFG |AI-based classification of symptomatic subjects with Brugada Syndrome from ECG-derived Markers and clinical data**
 <img align="left" src="https://img.shields.io/badge/Development environment -MATLAB / Google Collab-blue"></br>
 
-**Barcelona, 06 de June de 2023.**
+**Barcelona, 06 June de 2023.**
 
 **Author: Álvaro Leva Ligero.**
 
