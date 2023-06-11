@@ -4,7 +4,7 @@
 
 <img align="left" src="https://img.shields.io/badge/ TFG-phase1-yellow"><img align="left" src="https://img.shields.io/badge/Development environment -MATLAB-blue"></br>
 
-In this first phase, all the algorithms developed to pass from the initial 24h ECG signal (ISHNE format) to the final table containing the 12-lead ECG biomarkers are described.
+In this first phase, all the algorithms developed to pass from the initial 24h ECG signal (ISHNE format) to the final table containing the 12-lead ECG biomarkers are described. Thanks to Pedro Gomis, Flavio Palmieri and Luis Tortosa for their contributions. 
 
 > The open-source software [ECG-kit](http://marianux.github.io/ecg-kit/) is used. 
 
@@ -27,7 +27,7 @@ Additionally, the signal is converted from ADC units to microvolts using the ``.
 
 Finally, the algorithm iterates through all the *BH subjects* saving their 24h ECG signal in 3-min segments. Output signals include all 12-leads. 
 
-> Output file: ``ECG_<BH number>_<segment_number>.mat``
+> Input files: ``BHXXXX.ecg``<br>Output files: ``ECG_<BH number>_<segment_number>.mat``
 
 
 
@@ -45,18 +45,47 @@ Once the 24h ECG signal is segmented in 3-min intervals, signal averaging is app
 </p>
 
     
-> Output file: ``ECG_<BH number>_<segment_number>_beat.mat``
-    Auxiliary file: ``ECG_<BH number>_<segment_number>_filt.mat``
+>   Input files: ``ECG_<BH number>_<segment_number>.mat`` <br>Output files: ``ECG_<BH number>_<segment_number>_beat.mat``<br>Auxiliary saved files: ``ECG_<BH number>_<segment_number>_filt.mat``
 
     
-**NOTE:** Only the files derived from the **accepted** average beats are saved for further processing. The rest are deleted. From now on, the files containing ``ECG_<BH number>_<segment_number>_**beat**.mat`` are the ones used. 
+**NOTE:** Only the files derived from the **accepted** average beats are saved for further processing. The rest are deleted. 
 
 ## Beat delineation
 In order to compute the 12-lead ECG biomarkers for each average beat, the signals must be delineated to detect the reference points. 
 ### Add 1 second 
 After the noise reduction pre-processing, all the obtained 1 second beats were delineated in order to extract the ECG fiducial points of interest. The delineation process using the ‘wavedet’ algorithm from *ECGkit*, required a preliminary step consisting in the addition of an isoelectric segment of 1 second before every beat. The reason for this, is that the ECGkit delineator starts the detection from 1 second. Therefore, without the addition of an extra segment the beat would be ignored. A simple script adds 1 extra second to each average beat ``m03a_add_1sec_before_delin.m``
 
+        
+>   Input files: ``ECG_<BH number>_<segment_number>_beat.mat``<br>Output files: ``ECG_<BH number>_<segment_number>_beat2.mat``
+    
+### Delineation
+Once added the 1second before, average beats can be automatically delineated in the 12 leads by using the ‘wavedet’ algorithm from *ECGkit*:
+    
+    ```c
+    %run delineation
+    ECG.ECGtaskHandle = 'ECG_delineation'; 
+    ECG.Run;
+    ```
+After the execution of this scripts the 2second delineated beats are available.
+
+>   Input files:  ``ECG_<BH number>_<segment_number>_beat2.mat``<br>Output files: ``ECG_<BH number>_<segment_number>_beat2_ECG_delineation.mat``
+    
+### Beat arrangament information
+
+Finally, as a preliminary step before conducting ECG biomarker extraction the information of the indexes of the saved beats as well as the total final beats for each patient must be saved to arrange a final table with all the average *beats* in *rows* and all the computed *biomarkers* in *columns*. In order to do so, an auxiliary script ``m03c_BeatInfo.m`` iterates through the folder containing the accepted averaged beats from SAV to save the necessary information for the further table arrangement. The necessary information is contained in a struct:
+
+``BeatsInfo.mat`` includes:
+    
+| variable   | type   | content                                                                                                   |
+|------------|--------|-----------------------------------------------------------------------------------------------------------|
+| Nbeats     | double | Total number of beats for each BH patient.                                                                |
+| PosBeats   | double | Overall position of the first beat of each BH patient.                                                    |
+| TotBeats   | double | Total number of Beats from all BH patients.                                                               |
+| BeatNewIdx | cell   | Saved beat indexes, to ease the iteration of the new saved beats, the ones that remain from the SAV step. |
+
+>   Input files:  ``ECG_<BH number>_<segment_number>_beat.mat``<br>Output files: ``BeatsInfo.mat``
 ## 12lead ECG biomarker calculation
+
     
 ## Folder structure
 
