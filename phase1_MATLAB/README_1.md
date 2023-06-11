@@ -33,7 +33,7 @@ Once the 24h ECG signal is segmented in 3-min intervals, signal averaging is app
 
     
 <p align="center">
-<img src = "/assets/imgs/SAV_flowchartlike.png" width = 70%>
+<img src = "assets/SAV_flowchartlike.png" width = 70%>
 </p>
 
 <p align="center">
