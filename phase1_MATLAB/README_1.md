@@ -76,6 +76,7 @@ Finally, as a preliminary step before conducting ECG biomarker extraction the in
 
 ``BeatsInfo.mat`` includes:
     
+    
 | variable   | type   | content                                                                                                   |
 |------------|--------|-----------------------------------------------------------------------------------------------------------|
 | Nbeats     | double | Total number of beats for each BH patient.                                                                |
@@ -83,9 +84,33 @@ Finally, as a preliminary step before conducting ECG biomarker extraction the in
 | TotBeats   | double | Total number of Beats from all BH patients.                                                               |
 | BeatNewIdx | cell   | Saved beat indexes, to ease the iteration of the new saved beats, the ones that remain from the SAV step. |
 
+    
 >   Input files:  ``ECG_<BH number>_<segment_number>_beat.mat``<br>Output files: ``BeatsInfo.mat``
 ## 12lead ECG biomarker calculation
+The final step consists of the calculation of the 12-lead ECG biomarkers. Please refer to the tables of the thesis to see the description of the computed biomarkers as well as the calculation formulas and units.
 
+* **RR interval**
+
+All the fiducial points needed for the calculation (Pon, QRSon, QRS peak, ORSoff and Toff) were detected in the delineation process. However, to compute the corrected QT (QTc) the RR interval measure is required. As the average beat of the 3min intervals was computed during SAV, RR measure cannot be taken from beat to beat intervals. Instead, RR was computed as the average RR in all the 3min segment. To do so, the script ``m04a_RRmean_4EachLead.m`` was generated. In this code, the QRS detection of the entire 3min segment was needed.
     
+Finally, all the ECG biomarkers were computed in the 12-lead for the set of average beats of each patient. Please refer to the ``m04b_BiomarkerCalculation_12leads.m``, in which each step is well annotated. 
+    
+ 
 ## Folder structure
+
+The overall process has followed a folder-based structure containing the output files from the different steps. The following screenshots illustrate some of the resulting folders.
+    
+<p align="center">
+<img src = "assets/folders1.png" width = 70%>
+</p>
+<p align="center">
+<img src = "assets/folders2.png" width = 70%>
+</p>
+<p align="center">
+<img src = "assets/folders3.png" width = 70%>
+</p>
+<p align="center">
+<img src = "assets/folders4.png" width = 70%>
+</p>
+ 
 
