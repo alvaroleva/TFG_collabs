@@ -101,16 +101,16 @@ Finally, all the ECG biomarkers were computed in the 12-lead for the set of aver
 The overall process has followed a folder-based structure containing the output files from the different steps. The following screenshots illustrate some of the resulting folders.
     
 <p align="center">
-<img src = "assets/folders1.png" width = 70%>
+<img src = "assets/folders1.png" width = 30%>
 </p>
 <p align="center">
-<img src = "assets/folders2.png" width = 70%>
+<img src = "assets/folders2.png" width = 30%>
 </p>
 <p align="center">
-<img src = "assets/folders3.png" width = 70%>
+<img src = "assets/folders3.png" width = 30%>
 </p>
 <p align="center">
-<img src = "assets/folders4.png" width = 70%>
+<img src = "assets/folders4.png" width = 30%>
 </p>
  
 
