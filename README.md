@@ -21,7 +21,8 @@ This repository includes all the scripts developed during the project.
   * Signal averaging ``m02_SignalAveraging.m``
   * Beat delineation ``m03b_BeatDelineation.m``
   * 12-lead ECG-biomarkers computation ``m04b_BiomarkerCalculation_12leads.m``
-  <br>
+  * **Please consult ``README_1`` for a detailed explanation of the process**. 
+   <br>
   
   > *Auxiliary scripts:* ``m03a_add_1sec_before_delin.m``, ``m04a_RRmean_4EachLead.m``
   
